@@ -31,8 +31,9 @@ func splitProductID(inputProduct string) []string {
 
 	// Remove unnecessary characters from product names and append to products slice
 	for _, r := range result {
-		r = strings.TrimSpace(r)     // Remove leading and trailing spaces
-		r = strings.TrimLeft(r, "-") // Remove leading
+		r = strings.TrimSpace(r)      // Remove leading and trailing spaces
+		r = strings.TrimLeft(r, "-")  // Remove leading
+		r = strings.TrimRight(r, "-") // Remove trailing
 
 		// Remove everything before and including "&" (e.g., metadata or unwanted prefixes)
 		if index := strings.Index(r, "&"); index != -1 {
@@ -43,33 +44,6 @@ func splitProductID(inputProduct string) []string {
 	}
 
 	return products
-}
-
-// splitProductDetail splits a product string into three parts:
-// 1. Film Type ID (e.g., FG0A, FG05)
-// 2. Texture ID (e.g., CLEAR, MATTE, PRIVACY)
-// 3. Phone Model ID (e.g., IPHONE16PROMAX, SAMSUNGS25, OPPOA3)
-//
-// Parameters:
-//   - product: A string containing the product code in the format "{filmTypeID}-{textureID}-{phoneModelID}"
-//     Example: "FG0A-PRIVACY-IPHONE16PROMAX-B" → filmTypeID: "FG0A", textureID: "PRIVACY", phoneModelID: "IPHONE16PROMAX-B"
-//
-// Returns:
-//   - filmTypeID: The film type ID.
-//   - textureID: The texture ID.
-//   - phoneModelID: The phone model ID.
-func splitProductDetail(product string) (filmTypeID, textureID, phoneModelID string) {
-	parts := strings.SplitN(product, "-", 3)
-	if len(parts) > 0 {
-		filmTypeID = parts[0]
-	}
-	if len(parts) > 1 {
-		textureID = parts[1]
-	}
-	if len(parts) > 2 {
-		phoneModelID = parts[2]
-	}
-	return
 }
 
 // extractQuantity extracts the product ID and quantity from a given string.
@@ -99,6 +73,33 @@ func extractQuantity(product string) (productID string, quantity int) {
 
 	// If no "*" is present or no valid number is found, return the product as is with quantity 1
 	return product, 1
+}
+
+// splitProductDetail splits a product string into three parts:
+// 1. Film Type ID (e.g., FG0A, FG05)
+// 2. Texture ID (e.g., CLEAR, MATTE, PRIVACY)
+// 3. Phone Model ID (e.g., IPHONE16PROMAX, SAMSUNGS25, OPPOA3)
+//
+// Parameters:
+//   - product: A string containing the product code in the format "{filmTypeID}-{textureID}-{phoneModelID}"
+//     Example: "FG0A-PRIVACY-IPHONE16PROMAX-B" → filmTypeID: "FG0A", textureID: "PRIVACY", phoneModelID: "IPHONE16PROMAX-B"
+//
+// Returns:
+//   - filmTypeID: The film type ID.
+//   - textureID: The texture ID.
+//   - phoneModelID: The phone model ID.
+func splitProductDetail(product string) (filmTypeID, textureID, phoneModelID string) {
+	parts := strings.SplitN(product, "-", 3)
+	if len(parts) > 0 {
+		filmTypeID = parts[0]
+	}
+	if len(parts) > 1 {
+		textureID = parts[1]
+	}
+	if len(parts) > 2 {
+		phoneModelID = parts[2]
+	}
+	return
 }
 
 func NormalizeOrder(inputOrders []model.InputOrder) (cleanedOrders []model.CleanedOrder) {
