@@ -380,7 +380,7 @@ func TestNormalizeOrder(t *testing.T) {
 				},
 				{
 					No:                3,
-					PlatformProductId: "3*FG0A-PRIVACY-SAMSUNGS25",
+					PlatformProductId: "FG0A-PRIVACY-SAMSUNGS25*3",
 					Qty:               1,
 					UnitPrice:         120,
 					TotalPrice:        120,

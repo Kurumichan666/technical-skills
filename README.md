@@ -42,7 +42,7 @@ This project is a **Technical Skills Test** for the **Golang Developer** positio
 - Since the provided test cases **are not highly complex**, **regex is avoided** to maintain better performance.  
 
 #### **Example of ID Extraction**  
-```plaintext
+ 
 Input: " --FG0A-CLEAR-OPPOA3*2/%20xFG0A-MATTE-OPPOA3 "
 Output: ["FG0A-CLEAR-OPPOA3*2", "FG0A-MATTE-OPPOA3"]
 
@@ -62,9 +62,6 @@ Output: ["FG0A-CLEAR-IPHONE16PROMAX"]
 #### **Example Input & Output**  
 ```plaintext
 Input: "FG0A-MATTE-IPHONE16PROMAX*3"
-Output: productID: "FG0A-MATTE-IPHONE16PROMAX", quantity: 3
-
-Input: "3*FG0A-MATTE-IPHONE16PROMAX"
 Output: productID: "FG0A-MATTE-IPHONE16PROMAX", quantity: 3
 
 Input: "FG0A-MATTE-IPHONE16PROMAX"

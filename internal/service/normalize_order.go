@@ -35,9 +35,9 @@ func splitProductID(inputProduct string) []string {
 		r = strings.TrimLeft(r, "-")  // Remove leading
 		r = strings.TrimRight(r, "-") // Remove trailing
 
-		// Remove everything before and including "&" (e.g., metadata or unwanted prefixes)
-		if index := strings.Index(r, "&"); index != -1 {
-			r = r[index+1:]
+		// Remove everything before "FG0A"
+		if index := strings.Index(r, "FG0A"); index != -1 {
+			r = r[index:]
 		}
 
 		products = append(products, r) // Store cleaned product name
